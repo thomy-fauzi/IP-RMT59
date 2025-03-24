@@ -1,0 +1,29 @@
+{
+  "name": "ip-rmt59",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomy-fauzi/IP-RMT59.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thomy-fauzi/IP-RMT59/issues"
+  },
+  "homepage": "https://github.com/thomy-fauzi/IP-RMT59#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "pg": "^8.14.1",
+    "sequelize": "^6.37.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9",
+    "sequelize-cli": "^6.6.2"
+  }
+}
