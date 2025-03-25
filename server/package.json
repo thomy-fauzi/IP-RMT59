@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/thomy-fauzi/IP-RMT59#readme",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "express": "^4.21.2",
     "pg": "^8.14.1",
     "sequelize": "^6.37.6"
