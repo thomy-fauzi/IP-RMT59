@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, Navigate, useNavigate } from "react-router";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -8,6 +8,12 @@ function RegisterPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const accessToken = localStorage.getItem("access_token");
+
+  if (accessToken) {
+    return <Navigate to="/" />;
+  }
 
   const handleRegister = async (e) => {
     e.preventDefault();

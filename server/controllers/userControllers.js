@@ -1,4 +1,3 @@
-const { Hooks } = require("sequelize/lib/hooks");
 const { comparePassword } = require("../helpers/bcrypt");
 const { signToken } = require("../helpers/jwt");
 const { User } = require("../models");

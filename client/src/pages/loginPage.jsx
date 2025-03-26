@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, Navigate, useNavigate } from "react-router";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -7,6 +7,12 @@ function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("user1@mail.com");
   const [password, setPassword] = useState("12345");
+
+  const accessToken = localStorage.getItem("access_token");
+
+  if (accessToken) {
+    return <Navigate to="/" />;
+  }
 
   const handleLogin = async (event) => {
     event.preventDefault();
