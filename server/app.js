@@ -11,7 +11,7 @@ const errorHandler = require("./middlewares/errorHandler");
 const authentication = require("./middlewares/authentication");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -32,6 +32,7 @@ app.get("/", (req, res) => {
 
 app.post("/register", UserControllers.register);
 app.post("/login", UserControllers.login);
+app.post("/googleLogin", UserControllers.googleLogin);
 
 app.use(authentication);
 app.get("/books", Controllers.getBooks);
