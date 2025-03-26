@@ -4,6 +4,7 @@ if (process.env.NODE_ENV !== "production") {
 
 const express = require("express");
 const cors = require("cors");
+const multer = require("multer");
 const UserControllers = require("./controllers/userControllers");
 const Controllers = require("./controllers/controllers");
 const errorHandler = require("./middlewares/errorHandler");
@@ -15,6 +16,19 @@ const PORT = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
+app.patch(
+  "/books/:id/cover-url",
+  upload.single("coverImage"),
+  Controllers.updateCoverById
+);
+
+app.get("/", (req, res) => {
+  res.send("Hello Worlds!");
+});
 
 app.post("/register", UserControllers.register);
 app.post("/login", UserControllers.login);

@@ -1,7 +1,50 @@
 const { Book, MyBook } = require("../models");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 class Controllers {
+  static async updateCoverById(req, res, next) {
+    try {
+      const { id } = req.params;
+      const books = await Book.findByPk(id);
+      if (!books) {
+        throw { name: "NotFound", message: "Book not found" };
+      }
+      if (!req.file) {
+        throw { name: "BadRequest", message: "Please select an image file!" };
+      }
+      console.log(req.file);
+      const mediaType = req.file.mimetype;
+      const base64Data = req.file.buffer.toString("base64");
+      const base64 = `data:${mediaType};base64,${base64Data}`;
+
+      const result = await cloudinary.uploader.upload(base64, {
+        public_id: req.file.originalname,
+        folder: "books-cover-url",
+      });
+
+      await books.update(
+        { imageUrl: result.secure_url },
+        {
+          where: { id: id },
+        }
+      );
+
+      res.json({
+        message: `Image id ${books.title} has been updated`,
+        result,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
   static async generateAIContent(req, res, next) {
     try {
       const books = await Book.findAll({
