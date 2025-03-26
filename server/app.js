@@ -3,6 +3,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const express = require("express");
+const cors = require("cors");
 const UserControllers = require("./controllers/userControllers");
 const Controllers = require("./controllers/controllers");
 const errorHandler = require("./middlewares/errorHandler");
@@ -13,6 +14,7 @@ const PORT = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 app.post("/register", UserControllers.register);
 app.post("/login", UserControllers.login);
