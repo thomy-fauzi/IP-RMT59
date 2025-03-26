@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       status: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: "Borrowed",
+        defaultValue: "Uncompleted",
       },
     },
     {

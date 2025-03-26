@@ -3,8 +3,11 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const express = require("express");
-const errorHandler = require("./middlewares/errorHandler");
 const UserControllers = require("./controllers/userControllers");
+const Controllers = require("./controllers/controllers");
+const errorHandler = require("./middlewares/errorHandler");
+const authentication = require("./middlewares/authentication");
+
 const app = express();
 const PORT = 3000;
 
@@ -13,6 +16,13 @@ app.use(express.json());
 
 app.post("/register", UserControllers.register);
 app.post("/login", UserControllers.login);
+
+app.use(authentication);
+app.get("/books", Controllers.getBooks);
+app.get("/mybooks", Controllers.myBook);
+app.post("/mybooks/:id", Controllers.addToMyBooks);
+app.patch("/mybooks/:id", Controllers.updateMyBook);
+app.delete("/mybooks/:id", Controllers.deleteMyBook);
 
 app.use(errorHandler);
 
