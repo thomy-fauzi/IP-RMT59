@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/thomy-fauzi/IP-RMT59#readme",
   "dependencies": {
+    "@google/genai": "^0.6.1",
+    "@google/generative-ai": "^0.24.0",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",

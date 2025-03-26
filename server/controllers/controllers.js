@@ -1,6 +1,42 @@
 const { Book, MyBook } = require("../models");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 class Controllers {
+  static async generateAIContent(req, res, next) {
+    try {
+      const books = await Book.findAll({
+        attributes: ["title", "description"],
+        raw: true,
+      });
+
+      const bookList = books
+        .map((book, index) => {
+          return `${index + 1}. Title: ${book.title}, Description: ${
+            book.description
+          }`;
+        })
+        .join("\n");
+
+      // Inisialisasi GoogleGenAI
+      const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+
+      const prompt = `Saya memiliki daftar buku berikut:\n
+        ${bookList}\n
+        Dari daftar tersebut, pilih 5 buku terbaik berdasarkan kualitas judul dan deskripsinya. 
+        Jelaskan alasan mengapa buku-buku tersebut direkomendasikan.`;
+
+      const result = await model.generateContent(prompt);
+      const response = result.response.text();
+
+      console.log(response, "<<<<<<<");
+
+      res.status(200).json({ result: response });
+    } catch (err) {
+      next(err);
+    }
+  }
+
   static async getBooks(req, res, next) {
     try {
       const userId = req.user.id;

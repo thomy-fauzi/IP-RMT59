@@ -23,6 +23,7 @@ app.get("/mybooks", Controllers.myBook);
 app.post("/mybooks/:id", Controllers.addToMyBooks);
 app.patch("/mybooks/:id", Controllers.updateMyBook);
 app.delete("/mybooks/:id", Controllers.deleteMyBook);
+app.post("/generateAi", Controllers.generateAIContent);
 
 app.use(errorHandler);
 
