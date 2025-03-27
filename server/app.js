@@ -9,6 +9,7 @@ const UserControllers = require("./controllers/userControllers");
 const Controllers = require("./controllers/controllers");
 const errorHandler = require("./middlewares/errorHandler");
 const authentication = require("./middlewares/authentication");
+const { isAdmin } = require("./middlewares/authorization");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,12 +20,6 @@ app.use(cors());
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
-
-app.patch(
-  "/books/:id/cover-url",
-  upload.single("coverImage"),
-  Controllers.updateCoverById
-);
 
 app.get("/", (req, res) => {
   res.send("Hello Worlds!");
@@ -42,6 +37,13 @@ app.post("/mybooks/:id", Controllers.addToMyBooks);
 app.patch("/mybooks/:id", Controllers.updateMyBook);
 app.delete("/mybooks/:id", Controllers.deleteMyBook);
 app.post("/generateAi", Controllers.generateAIContent);
+
+app.patch(
+  "/books/:id/cover-url",
+  upload.single("coverImage"),
+  isAdmin,
+  Controllers.updateCoverById
+);
 
 app.use(errorHandler);
 
