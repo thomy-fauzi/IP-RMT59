@@ -1,5 +1,5 @@
 function errorHandler(err, req, res, next) {
-  console.error("errorHandler : ", err);
+  console.log("errorHandler : ", err);
 
   if (err.name === "NotFound") {
     res.status(404).json({ message: err.message });
