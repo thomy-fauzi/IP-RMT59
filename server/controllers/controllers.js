@@ -104,6 +104,19 @@ class Controllers {
     }
   }
 
+  static async getBookById(req, res, next) {
+    try {
+      const { id } = req.params;
+      const book = await Book.findByPk(id);
+      if (!book) {
+        throw { name: "NotFound", message: "Book not found" };
+      }
+      res.status(200).json(book);
+    } catch (err) {
+      next(err);
+    }
+  }
+
   static async addToMyBooks(req, res, next) {
     try {
       const { id } = req.params;

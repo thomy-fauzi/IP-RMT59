@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import "./booksCard.css";
 import Button from "./button";
 
@@ -6,7 +7,9 @@ const BooksCard = ({ book, onClick }) => {
     <div className="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
       <div className="card w-90 shadow-sm mb-4 position-relative">
         <div className="image-container">
-          <img src={book.imageUrl} className="card-img-top" alt="image" />
+          <Link to={`/${book.id}/cover-url/`}>
+            <img src={book.imageUrl} className="card-img-top" alt="image" />
+          </Link>
           <div className="overlay">
             <h6 className="text-white text-center fw-bold">{book.title}</h6>
           </div>

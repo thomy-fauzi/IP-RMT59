@@ -5,6 +5,7 @@ import HomePage from "./pages/homePage";
 import AuthLayout from "./layouts/authLayout";
 import MyBook from "./pages/mybooksPage";
 import AIRecommendations from "./pages/recomendationPage";
+import UpdateImage from "./pages/uploadImagePage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/mybooks" element={<MyBook />} />
           <Route path="/recomendation" element={<AIRecommendations />} />
+          <Route path="/:id/cover-url" element={<UpdateImage />} />
         </Route>
       </Routes>
     </BrowserRouter>

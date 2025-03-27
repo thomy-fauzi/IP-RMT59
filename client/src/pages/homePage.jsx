@@ -15,7 +15,7 @@ function HomePage() {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
-      console.log(response.data);
+      //   console.log(response.data);
       setBooks(response.data);
     } catch (err) {
       console.error(err);

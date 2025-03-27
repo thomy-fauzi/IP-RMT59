@@ -36,6 +36,7 @@ app.post("/googleLogin", UserControllers.googleLogin);
 
 app.use(authentication);
 app.get("/books", Controllers.getBooks);
+app.get("/books/:id", Controllers.getBookById);
 app.get("/mybooks", Controllers.myBook);
 app.post("/mybooks/:id", Controllers.addToMyBooks);
 app.patch("/mybooks/:id", Controllers.updateMyBook);
