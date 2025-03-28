@@ -17,7 +17,7 @@ function Login() {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await axios.post("http://localhost:3000/login", {
+      const { data } = await axios.post("https://server.thom.web.id/login", {
         email,
         password,
       });
@@ -36,9 +36,12 @@ function Login() {
 
   async function handleCredentialResponse(response) {
     console.log("Encoded JWT ID token: ", response);
-    const { data } = await axios.post("http://localhost:3000/googleLogin", {
-      googleToken: response.credential,
-    });
+    const { data } = await axios.post(
+      "https://server.thom.web.id/googleLogin",
+      {
+        googleToken: response.credential,
+      }
+    );
     localStorage.setItem("access_token", data.access_token);
     navigate("/");
   }
@@ -60,9 +63,16 @@ function Login() {
     >
       <div className="w-50 d-flex justify-content-center">
         <div style={{ width: "100%", maxWidth: "400px" }}>
-          <h2 className="text-center mb-4">Login to your Account</h2>
+          <h2 className="fw-bold">Perpus OL</h2>
+          <p className="text-muted mb-3">Akses ke Dasbor kamu</p>
           <form onSubmit={handleLogin}>
             <div className="mb-3">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label text-muted"
+              >
+                E-mail
+              </label>
               <input
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -74,6 +84,9 @@ function Login() {
               />
             </div>
             <div className="mb-3">
+              <label htmlFor="password" className="form-label text-muted">
+                Password
+              </label>
               <input
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -86,7 +99,7 @@ function Login() {
             <button type="submit" className="btn btn-primary w-100">
               Login
             </button>
-            <div id="buttonDiv"></div>
+            <div id="buttonDiv" className="w-100 mt-3 mb-3"></div>
             <div className="py-3 d-flex justify-content-center">
               <p>
                 Dont have account?
@@ -98,7 +111,7 @@ function Login() {
       </div>
       <div className="w-50">
         <img
-          src="https://static.vecteezy.com/system/resources/thumbnails/012/024/324/small/a-person-using-a-smartphone-to-fill-out-a-registration-form-registration-register-fill-in-personal-data-use-the-application-vector.jpg"
+          src="https://png.pngtree.com/png-clipart/20230821/original/pngtree-online-library-digital-education-background-with-distance-learning-picture-image_8147913.png"
           alt="Gambar"
           className="w-100 h-100 object-cover"
         />

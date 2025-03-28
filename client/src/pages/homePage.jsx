@@ -10,7 +10,7 @@ function HomePage() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/books", {
+      const response = await axios.get("https://server.thom.web.id/books", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
@@ -35,7 +35,7 @@ function HomePage() {
     try {
       console.log(localStorage.getItem("access_token"));
       await axios.post(
-        `http://localhost:3000/mybooks/${bookId}`,
+        `https://server.thom.web.id/mybooks/${bookId}`,
         {},
         {
           headers: {

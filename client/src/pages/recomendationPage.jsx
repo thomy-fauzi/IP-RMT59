@@ -10,7 +10,7 @@ const AIRecommendations = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:3000/generateAi",
+        "https://server.thom.web.id/generateAi",
         {},
         {
           headers: {
