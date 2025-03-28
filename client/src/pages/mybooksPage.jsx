@@ -8,7 +8,7 @@ function MyBook() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/mybooks", {
+      const response = await axios.get("https://server.thom.web.id/mybooks", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
@@ -32,7 +32,7 @@ function MyBook() {
   const handleUpdateStatus = async (bookId) => {
     try {
       await axios.patch(
-        `http://localhost:3000/mybooks/${bookId}`,
+        `https://server.thom.web.id/mybooks/${bookId}`,
         {},
         {
           headers: {
@@ -64,7 +64,7 @@ function MyBook() {
       });
 
       if (result.isConfirmed) {
-        await axios.delete(`http://localhost:3000/mybooks/${bookId}`, {
+        await axios.delete(`https://server.thom.web.id/mybooks/${bookId}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
           },

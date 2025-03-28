@@ -18,7 +18,7 @@ function RegisterPage() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:3000/register`, {
+      await axios.post(`https://server.thom.web.id/register`, {
         name,
         email,
         password,
@@ -41,9 +41,12 @@ function RegisterPage() {
     >
       <div className="w-50 d-flex justify-content-center">
         <div style={{ width: "100%", maxWidth: "400px" }}>
-          <h1 className="text-center mb-4">Create your account</h1>
+          <h1 className="text-center fw-bold mb-4">Create your account</h1>
           <form onSubmit={handleRegister}>
             <div className="mb-3">
+              <label htmlFor="nama" className="form-label">
+                Nama
+              </label>
               <input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -54,6 +57,9 @@ function RegisterPage() {
               />
             </div>
             <div className="mb-3">
+              <label htmlFor="email" className="form-label">
+                E-mail
+              </label>
               <input
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -65,6 +71,9 @@ function RegisterPage() {
               />
             </div>
             <div className="mb-3">
+              <label htmlFor="password" className="form-label">
+                Password
+              </label>
               <input
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -88,7 +97,7 @@ function RegisterPage() {
       </div>
       <div className="w-50">
         <img
-          src="https://static.vecteezy.com/system/resources/thumbnails/012/024/324/small/a-person-using-a-smartphone-to-fill-out-a-registration-form-registration-register-fill-in-personal-data-use-the-application-vector.jpg"
+          src="https://png.pngtree.com/png-clipart/20230821/original/pngtree-online-library-digital-education-background-with-distance-learning-picture-image_8147913.png"
           alt="Gambar"
           className="w-100 h-100 object-cover"
         />

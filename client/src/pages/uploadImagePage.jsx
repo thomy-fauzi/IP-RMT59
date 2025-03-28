@@ -12,7 +12,7 @@ function UpdateImage() {
   const fetchImageById = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3000/books/${params.id}`,
+        `https://server.thom.web.id/books/${params.id}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -40,7 +40,7 @@ function UpdateImage() {
     event.preventDefault();
     try {
       await axios.patch(
-        `http://localhost:3000/books/${params.id}/cover-url`,
+        `https://server.thom.web.id/books/${params.id}/cover-url`,
         formData,
         {
           headers: {

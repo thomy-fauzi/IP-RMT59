@@ -51,7 +51,7 @@ function Navbar() {
               navigate("/login");
             }}
           >
-            Keluar
+            Logout
           </button>
         </div>
       </div>
